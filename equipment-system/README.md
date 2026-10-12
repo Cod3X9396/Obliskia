@@ -1,42 +1,22 @@
-# Obliskia Equipment & Trinket System
+# Obliskia Equipment Prototype
 
-A standalone equipment interface for Obliskia's magical items. This system is separate from the future Cyberpunk 2077 cyberware project.
+The Arcane Ledger opens a prototype equipment menu with four separate slots: Charm, Ring, Relic, and Focus.
 
-## Core requirements
+## What works in the prototype code
+- Each slot accepts only its whitelisted test item.
+- Equipping removes one test item from inventory and records it in the player's equipment data.
+- Unequipping returns the item; if the inventory is full, the slot stays equipped.
+- Equipment data is stored as a player dynamic property for reconnect persistence.
+- The Arcane Ledger prevents overlapping menus.
 
-- Equipment slots are separate from Minecraft's normal armor slots.
-- Each slot has a clear category name and a visual identifier; text and icons should work together.
-- Every item declares which slot category it belongs to. Incompatible items must be rejected.
-- Players manage their own equipment through the custom UI; no Ripperdoc-style provider requirement.
-- Equipped items and their effects must remain consistent after reconnects and in multiplayer.
-- The implementation must be validated by server-side script wherever Bedrock APIs allow it.
-- The design is inspired by the Archaism Talismans inventory UI: a Minecraft-native feel, clearly labeled slots, recognizable item icons, and a compact equipment layout. This is an independent implementation and must not depend on that add-on.
-- The interface is opened by using a dedicated custom item, the Arcane Ledger—not a chat command.
+## Test items
+The four `obliskia:test_*` items are temporary test items, not final game gear. Give them with commands such as `/give @s obliskia:test_charm`.
 
-## Development order
+## Important
+The code and JSON pass static checks, but **the Bedrock runtime has not been tested yet**. Before using this in a real world, import it into a disposable test world and verify opening, equip/unequip, inventory-full behavior, and reconnect persistence. No item effects are implemented yet.
 
-1. **Opening-item proof of concept:** use the custom Arcane Ledger item to open a temporary native Bedrock form and verify the item-use event on Bedrock 26.52.
-2. **Custom UI proof of concept:** research and test a Minecraft-style inventory layout inspired by Archaism Talismans; don't mistake the temporary form for the final interface.
-3. **Slot rules:** define data for slot categories, allowed item IDs, compatibility checks, and safe handling of rejected items.
-4. **Equipment state:** store equipped item IDs per player and restore them reliably.
-5. **Effects:** apply/remove item effects without duplicates or stale effects.
-6. **UI and polish:** clear category labels, empty-slot icons, selected-item details, and invalid-slot feedback.
-7. **Packaging and testing:** test reloads, reconnects, multiplayer, inventory-full cases, and Realm compatibility.
-
-## Non-goals
-
-- No cyberware or Cyberpunk categories.
-- No replacement of vanilla armor slots.
-- No requirement for magical NPCs or stations to equip items.
-- No dependency on Archaism Talismans.
-
-## Debug status
-
-- JavaScript syntax check: passed locally with Node.js 22 (syntax only; Minecraft modules are not available in Node).
-- `manifest.json` and `arcane_ledger.json`: parsed successfully as JSON.
-- Manifest script entry matches `scripts/main.js`.
-- Form navigation bug fixed: the detail page's **Back** button now returns to the category menu.
-- Duplicate form-opening guard and error logging added.
-- Arcane Ledger icon key changed to `enchanted_book`.
-
-**Not yet a working equipment prototype.** The current script is only an Arcane Ledger-to-native-form smoke test. It has placeholder categories and cannot equip items, enforce slot rules, save equipment, or provide the final inventory-like UI. Do not treat the current code as ready for porting.
+## Next steps
+1. Runtime test in a disposable world.
+2. Fix any API/version errors from the content log.
+3. Add real equipment items and slot rules.
+4. Add effects only after equip/unequip and persistence are reliable.
