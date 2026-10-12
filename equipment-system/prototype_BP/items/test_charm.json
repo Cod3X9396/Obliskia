@@ -8,7 +8,9 @@
       }
     },
     "components": {
-      "minecraft:icon": "amethyst_shard",
+      "minecraft:icon": {
+        "texture": "obliskia_test_charm"
+      },
       "minecraft:display_name": {
         "value": "Test Charm"
       },
