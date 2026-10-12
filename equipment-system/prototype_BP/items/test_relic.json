@@ -8,7 +8,9 @@
       }
     },
     "components": {
-      "minecraft:icon": "echo_shard",
+      "minecraft:icon": {
+        "texture": "obliskia_test_relic"
+      },
       "minecraft:display_name": {
         "value": "Test Relic"
       },
