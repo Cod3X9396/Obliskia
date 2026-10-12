@@ -1,47 +1,27 @@
-# Technical Proof of Concept
+# Equipment Prototype Test Plan
 
-This document tracks the risks that must be tested before building the full equipment system.
+## Current prototype
+The Arcane Ledger opens a native Bedrock form. Four test-only item types map to four slots: Charm, Ring, Relic, and Focus. The script removes a matching test item when equipping, records the slot in a player dynamic property, and returns the item when unequipping.
 
-## Questions to prove
+## Static checks
+- `scripts/main.js` passes a JavaScript syntax check.
+- `manifest.json` and all five item JSON files parse successfully.
+- Slot item IDs are explicitly whitelisted in the script.
 
-### 1. Custom UI entry point
-Can the desired custom JSON UI screen be opened reliably from a supported in-game action in the target Bedrock version? The reference add-on uses custom JSON UI files, but its activation mechanism must be verified rather than guessed.
+## Runtime test checklist
+Use a **disposable test world**, not the main world:
+1. Confirm the pack loads without script/JSON errors.
+2. Give yourself the Arcane Ledger and each test item.
+3. Use the Ledger; confirm all four slots open.
+4. Equip a Charm in Charm; confirm one Charm leaves inventory.
+5. Try a Ring in Charm; it must not be offered.
+6. Unequip; confirm the item returns exactly once.
+7. Fill inventory, then unequip; it must stay equipped.
+8. Rejoin the world; confirm equipment remains recorded.
+9. Repeat in multiplayer if the target setup supports it.
 
-### 2. Slot interaction and validation
-Can the interface prevent incompatible items from entering a slot? If UI controls do not provide a secure validation boundary, all state changes must go through a script-controlled path and be checked again server-side.
-
-### 3. Storage model
-Compare:
-- a dedicated managed inventory/container, and
-- per-player equipment data with a UI that presents virtual slots.
-
-Choose only after confirming the interaction model and persistence behavior. A visual slot is not automatically a real inventory slot.
-
-### 4. Persistence
-Test player leave/rejoin, world reload, death, and dimension changes. Decide which state survives each event and how missing/invalid item IDs are recovered.
-
-### 5. Realm support
-Avoid APIs that are unavailable on Realms or dedicated-server-only. Verify every dependency against the actual target game version.
-
-## Acceptance criteria for the first prototype
-
-- The pack loads without script or JSON errors.
-- The custom screen can be opened and closed reliably.
-- Every empty slot visibly identifies its category using text and/or an icon.
-- An item from the wrong category is rejected without being lost or duplicated.
-- A valid item can be equipped, removed, and restored after reconnecting.
-- The behavior is tested in the intended Bedrock version before the architecture is expanded.
-
-## Debug findings
-
-- The current JavaScript passes a local syntax check, and the manifest/item JSON parse successfully. This does not prove the script modules load in Minecraft.
-- The detail page previously labeled its button **Back** but simply closed the form. The menu loop now makes it return to the category menu.
-- A per-player guard now prevents overlapping forms from repeated item-use events.
-- The item icon was changed from `book_enchanted` to the vanilla `enchanted_book` texture key.
-
-## Current blockers
-
-- The Arcane Ledger event and native form still need an in-game runtime test before their behavior can be called verified.
-- `ActionFormData` is a button-list dialog, not the desired inventory-like custom screen.
-- There is no actual item-equip flow, slot compatibility validation, persistence, or item-loss/duplication protection yet.
-- The custom-screen opening method and slot interaction model remain unproven for the target Bedrock version.
+## Known limits
+- Static checks do not prove Minecraft runtime compatibility.
+- Equipped items are recorded and held out of inventory, but **their effects are not implemented**.
+- If the game shuts down at the exact moment between inventory mutation and saving state, a narrow item-loss/duplication risk may remain. Treat this as an early prototype, not production-safe gear.
+- The native form is functional UI, not the final custom inventory-like screen.
