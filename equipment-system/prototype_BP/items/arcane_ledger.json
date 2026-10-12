@@ -8,7 +8,9 @@
       }
     },
     "components": {
-      "minecraft:icon": "enchanted_book",
+      "minecraft:icon": {
+        "texture": "obliskia_arcane_ledger"
+      },
       "minecraft:display_name": {
         "value": "Arcane Ledger"
       },
