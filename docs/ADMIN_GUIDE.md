@@ -1,23 +1,19 @@
-# Obliskia Admin Quick Guide
+# Obliskia Admin Guide
 
-Welcome to the team! Here's the stuff you'll actually need.
+## Players
+- Spam: warn them.
+- Griefing, cheating, stealing, or duplication: save evidence and tell the owner.
+- Harassment or threats: protect the player and alert the owner.
+- Lost items/bugs: get details before promising fixes.
 
-## Handling players
-- **Spam:** Ask them to stop; warn them if it continues.
-- **Griefing, stealing, cheating, or duplication:** Save evidence and tell the owner.
-- **Harassment or threats:** Help protect the affected player and contact the owner quickly.
-- **Lost items or bugs:** Get details before promising a replacement.
+Be fair; keep reports private.
 
-Be fair: don't punish people based on rumors. Keep incident details private.
+## Keep it safe
+Don't abuse admin powers, share private server info, or test risky changes on the live world. Ask if unsure.
 
-## Keep the world safe
-Don't abuse admin powers, share passwords or private server info, or test risky commands/add-on changes on the live world. If you're unsure, ask first.
+## Magic & features
+Planned: **48 max MP**, **Fireball: 8 MP**, **Ring of Fire: 25 MP**. Check what's working in-game first. Get human approval for destructive AI actions.
 
-## Magic and features
-Planned values include **48 max MP**, **Fireball: 8 MP**, and **Ring of Fire: 25 MP**. These may not be working yet, so test in-game before telling players they're available. The AI wizard should be tested separately, and destructive actions need human approval.
-
-**Arcane Ledger:** The equipment menu is still a prototype. Don't use it on the live world yet.
-
-**Rule of thumb:** If something breaks or you're unsure, save details and contact the owner.
+**Arcane Ledger:** Prototype only—don't use on the live world.
 
 [Obliskia on GitHub](https://github.com/Cod3X9396/Obliskia)
