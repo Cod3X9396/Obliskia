@@ -41,7 +41,7 @@ async function showEquipmentPrototype(player) {
       await new ActionFormData()
         .title(category.title)
         .body(category.detail + "\n\nCompatibility checks will be implemented in the next prototype.")
-        .button("Back")
+        .button("Close")
         .show(player)
         .catch(() => {});
     }
@@ -54,7 +54,4 @@ world.afterEvents.itemUse.subscribe((event) => {
   if (event.itemStack.typeId !== TEST_ITEM) return;
   system.run(() => showEquipmentPrototype(event.source));
 });
-
-world.afterEvents.worldLoad.subscribe(() => {
-  console.warn("[Obliskia Equipment] Prototype loaded. Use a compass to open the test menu.");
-});
+\n
