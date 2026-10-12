@@ -30,6 +30,13 @@ A standalone equipment interface for Obliskia's magical items. This system is se
 - No requirement for magical NPCs or stations to equip items.
 - No dependency on Archaism Talismans.
 
-## Status
+## Debug status
 
-Planning / technical proof of concept. Do not assume custom UI opening, item movement interception, or abstract-slot locking works until it has been demonstrated in the target Bedrock version.
+- JavaScript syntax check: passed locally with Node.js 22 (syntax only; Minecraft modules are not available in Node).
+- `manifest.json` and `arcane_ledger.json`: parsed successfully as JSON.
+- Manifest script entry matches `scripts/main.js`.
+- Form navigation bug fixed: the detail page's **Back** button now returns to the category menu.
+- Duplicate form-opening guard and error logging added.
+- Arcane Ledger icon key changed to `enchanted_book`.
+
+**Not yet a working equipment prototype.** The current script is only an Arcane Ledger-to-native-form smoke test. It has placeholder categories and cannot equip items, enforce slot rules, save equipment, or provide the final inventory-like UI. Do not treat the current code as ready for porting.
