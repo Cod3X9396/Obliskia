@@ -3,7 +3,7 @@ import { ActionFormData } from "@minecraft/server-ui";
 
 /*
  * TEMPORARY PROOF OF CONCEPT for Obliskia Equipment.
- * Use a compass to open this test menu.
+ * Type !equipment in chat to open this test menu.
  *
  * This form is not the final custom inventory UI. It only verifies that:
  * - the pack loads and runs Script API code,
