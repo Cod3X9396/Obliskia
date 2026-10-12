@@ -13,7 +13,7 @@ import { ActionFormData } from "@minecraft/server-ui";
  * Slot data and item movement are deliberately not implemented yet.
  */
 
-const TEST_ITEM = "minecraft:compass";
+const OPEN_COMMAND = "!equipment";
 const categories = [
   { title: "Charm Slot", detail: "Accepts Obliskia charms only." },
   { title: "Ring Slot", detail: "Accepts Obliskia rings only." },
@@ -50,8 +50,9 @@ async function showEquipmentPrototype(player) {
   }
 }
 
-world.afterEvents.itemUse.subscribe((event) => {
-  if (event.itemStack.typeId !== TEST_ITEM) return;
-  system.run(() => showEquipmentPrototype(event.source));
-});
+world.beforeEvents.chatSend.subscribe((event) => {
+  if (event.message.trim().toLowerCase() !== OPEN_COMMAND) return;
 
+  event.cancel = true;
+  system.run(() => showEquipmentPrototype(event.sender));
+});
