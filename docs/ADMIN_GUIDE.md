@@ -1,236 +1,250 @@
-# Obliskia — New Admin Handbook
+# Obliskia Admin Guide
 
-**Audience:** new moderators, administrators, and technical maintainers  
-**Project:** Minecraft Bedrock fantasy-RPG add-on  
+Hey! This guide is for anyone helping run Obliskia. You don't need to be a developer to use most of it.
+
+**The project:** Minecraft Bedrock fantasy RPG  
 **Repository:** https://github.com/Cod3X9396/Obliskia  
-**Target reported by the owner:** Bedrock v26.52  
-**Reviewed:** 2026-10-12
+**Target version mentioned by the owner:** Bedrock v26.52  
+**Last updated:** 2026-10-12
 
-> **Read first:** This guide distinguishes previous design notes from confirmed live features. A feature described here is not necessarily installed or working in the current world. Items marked “verify” or “planned” must be checked in the actual world or current code before an admin promises that they work.
+> **Quick note:** Some things below are ideas or older development notes, not confirmed working features. If something says **check first**, test it or ask the owner before telling players it's ready.
 
-## 1. What Obliskia is
+## 1. What is Obliskia?
 
-Obliskia is a Minecraft Bedrock fantasy RPG project. Its intended features include magical tomes and spellcasting, MP/mana, spell effects, an AI-wizard/agent project, player convenience commands, quests, and a separate equipment/trinket interface.
+Obliskia is a Minecraft Bedrock RPG project with plans for magic, tomes, MP (mana), quests, an AI wizard, and an equipment/trinket menu.
 
-The public GitHub repository currently contains the equipment-system documents and a small prototype behavior pack. Do not assume every project idea is live on the Realm.
+Not everything discussed for the project is in the live world yet. The GitHub repo has some equipment-system files, but that doesn't mean the feature is finished or safe to use on the Realm.
 
-## 2. Admin responsibilities and moderation
+## 2. Being an admin
 
-Admins protect the world and its players; they are not above the rules.
+The main job is to keep the world fun and fair. Try to be helpful, stay calm, and apply the same rules to your friends as everyone else.
 
-### Incident procedure
+### If something goes wrong
 
-1. Identify the player and what allegedly happened.
-2. If the facts are unclear, ask questions before punishing.
-3. Preserve evidence when practical: chat context, screenshots, coordinates, time, witnesses, and relevant logs.
-4. Use the least severe action that safely addresses the issue.
-5. Record significant actions in a private admin log.
-6. Escalate serious, repeated, disputed, or technical cases to the world owner.
+1. **Find out what happened.** Ask the players involved and get the story before deciding.
+2. **Save evidence if you can.** Screenshots, chat, coordinates, the time, and witnesses can help.
+3. **Stop ongoing damage.** Keep people safe, but don't rush into a big punishment without knowing the facts.
+4. **Use a fair response.** A reminder may be enough for a first mistake. Repeated or serious problems need stronger action.
+5. **Tell the owner when needed.** Especially for serious incidents, disputes, exploits, or anything that could damage the world.
+6. **Write down important incidents** in a private admin log so the team knows what happened.
 
-### Recommended moderation ladder
+### A simple moderation guide
 
-This is a recommended policy, not a built-in Obliskia moderation feature.
+| Problem | What to do |
+|---|---|
+| Accidental mess or mistake | Explain what happened and help fix it |
+| Spam or annoying chat | Ask them to stop; warn them if it continues |
+| Griefing or stealing | Stop the damage, save evidence, and tell the owner if it's serious or repeated |
+| Cheating or item duplication | Ask them to stop, save evidence, and don't spread the exploit around |
+| Harassment or threats | Protect the affected player and get the owner involved quickly |
+| Lost item or bug | Write down what happened and investigate before promising a replacement |
 
-| Situation | Initial response | Escalation |
-|---|---|---|
-| Accidental disruption | Explain the rule and help correct it | Warning if repeated |
-| Spam/disruptive chat | Tell the player to stop; warn | Remove from session if it continues |
-| Griefing/theft | Stop ongoing damage and preserve evidence | Restore from a trusted backup if available; escalate repeat cases |
-| Cheating/exploit/duplication | Stop abuse and preserve evidence; don't spread exploit instructions | Owner review, rollback or restriction as appropriate |
-| Harassment/threats | Protect affected players and preserve evidence | Remove offender from session and escalate promptly |
-| Bug or unfair item loss | Record exact steps and affected state | Reproduce in a test world; don't promise compensation before review |
+This is a suggested approach, not a built-in Obliskia moderation system. Don't punish someone just because another player accused them.
 
-Do not punish someone solely on rumor. An admin may temporarily interrupt an incident for safety while gathering facts.
+### What to put in the admin log
 
-### Private moderation log
+Keep it private. Write down:
+- When it happened (include the time zone if possible)
+- Which admins and players were involved
+- What you actually saw or what was reported
+- Any screenshots or other evidence
+- What action was taken and why
+- Whether the owner needs to follow up
 
-Record date/time and timezone, admin, players involved, factual description, evidence/witnesses, action and reason, whether owner review is needed, and follow-up. Keep the log private; do not publish players' private information.
+## 3. Admin powers and keeping the world safe
 
-## 3. Permissions and world safety
+- Only give admin/operator powers to people who need them.
+- Never share passwords, API keys, or access tokens.
+- Don't test random commands or scripts on the live world.
+- Don't use admin powers to secretly give yourself or friends an advantage.
+- If an admin leaves the team, make sure their access is removed.
+- Before changing the world or add-on, check with the owner and make sure there's a way to recover if something breaks.
 
-### Least privilege
+**Realms and Dedicated Servers aren't the same.** A command or server file that works on a Bedrock Dedicated Server might not be available on a Realm. Use the tools for the hosting setup you're actually using.
 
-- Give operator/admin powers only to people who need them.
-- Never share owner credentials, API keys, or access tokens.
-- Do not run unfamiliar commands/scripts on the live world.
-- Review access when an admin leaves the team.
-- Do not use admin powers to benefit yourself or friends secretly.
+For a Bedrock Dedicated Server, the official Minecraft docs cover commands like `op`, `deop`, `gamerule`, and `stop`, along with `server.properties` and `allowlist.json`. The `/allowlist` command has actions such as `add`, `remove`, `list`, `on`, `off`, and `reload`. Check the official docs before using them, and don't assume they work the same way on Realms.
 
-### Realm versus Bedrock Dedicated Server
-
-These are different hosting environments. Do not assume a dedicated-server command or file exists on a Realm. Use the actual world owner's supported Realm/Minecraft permission controls for the hosting setup.
-
-For Bedrock Dedicated Server, Microsoft's documentation describes console commands such as `op`, `deop`, `gamerule`, and `stop`, plus `server.properties` and `allowlist.json`. The documented `/allowlist <action> [name]` actions include `add`, `remove`, `list`, `on`, `off`, and `reload`. Check the current server version and permissions before using these. See the official links in section 13.
-
-### Before destructive commands
-
-Commands that clear inventory, kill entities, teleport players, change game rules, or reload packs can cause collateral damage. Confirm the target and result, check scope, make a backup/use a test world where possible, and record changes to inventory, builds, permissions, or world state. Do not edit or reload live packs without owner approval and a recovery plan.
+Be extra careful with commands that clear inventories, kill entities, teleport players, change game rules, or reload add-ons. Check what the command will affect first.
 
 ## 4. Magic and MP
 
-The following values are from prior design discussions. Verify them against the current add-on before treating them as live rules.
+These are values discussed during development. **Check the current add-on before treating them as the live rules.**
 
-- Maximum MP: **48**
-- The spell system requires a tome.
-- Regeneration: **1 MP every 2 seconds**
-- Fireball: **8 MP**
-- Ring of Fire: **25 MP**, **radius 5**, **10 seconds** in the newer design summary.
-- Black Hole: described as costing **100%**; whether this means all current MP, a full bar, or another rule needs implementation verification.
-- Dash: creates a **20-block slow field for 1 second** in design notes.
+| Spell/system | Previously discussed details |
+|---|---|
+| MP | Maximum 48; regenerates 1 MP every 2 seconds |
+| Tome | A tome is required to cast spells |
+| Fireball | Costs 8 MP; right-click was the planned input |
+| Flamethrower | Hold sneak; drains 1 MP every 10 ticks; flame effects and damage were discussed |
+| Ring of Fire | Costs 25 MP; radius 5; lasts 10 seconds in the newer design notes |
+| Black Hole | Described as costing “100%,” but exactly what that means still needs checking |
+| Dash | Planned to create a slow field covering 20 blocks for 1 second |
 
-A previous Fire Tome implementation discussion gave more detail:
-- Fireball costs 8 MP per right-click.
-- Flamethrower requires sneaking, drains 1 MP every 10 ticks, emits flame particles and damage at a range described as 2–8 blocks, and was designed to provide fire resistance and a sound.
-- Ring of Fire costs 25 MP, uses left-click, lasts 200 game ticks (10 seconds), and was tracked with a scoreboard named `ROFtimer`.
+Older Fire Tome notes also mention Ring of Fire being triggered with left-click and using a scoreboard called `ROFtimer`. These details may come from an older version.
 
-These may describe a particular version of the Fire Tome, not necessarily the current live pack. Live code and observed behavior take precedence. Do not invent spell costs or tell players a spell is enabled until verified.
+### If a spell isn't working
 
-### Troubleshooting a spell
+Ask the player:
+- Which tome and spell were they using?
+- How much MP did they have before and after?
+- What buttons or actions did they use (right-click, left-click, sneak)?
+- Where were they, and what happened?
+- Did particles, sound, or damage appear?
+- Did it happen to anyone else?
 
-Ask for the tome and spell, MP before/after, exact input (right-click, left-click, sneak), dimension/coordinates, whether particles/sound/damage appeared, whether other players were nearby, and any available error. Reproduce in a test world. Don't spawn replacements or edit MP until the loss is verified and the owner-approved compensation policy is known.
+If possible, test it in a separate world with the same add-on version. Don't promise a spell is fixed until someone has tested it.
 
-## 5. Functions, scoreboards, and pack debugging
+## 5. Technical stuff: functions and scoreboards
 
-Previous implementation discussions referenced:
-- A `functions/` folder.
-- `spell_casting.mcfunction` as an input-detection/dispatch point.
-- Spell-specific functions invoked using `/function`.
-- Scoreboards for MP, spell state, and timed effects.
-- Fire Tome identifier `obliskia:fire_tome`.
-- Separating input detection, spell logic, and tick/update logic for ongoing effects.
+Earlier development notes mentioned these names:
+- `functions/` — where function files may live
+- `spell_casting.mcfunction` — discussed as the place that detects or routes spell inputs
+- `/function` — Minecraft command used to run a function
+- Scoreboards — used for MP, spell state, or timed effects
+- `obliskia:fire_tome` — the Fire Tome item identifier
+- `ROFtimer` — a scoreboard name mentioned for Ring of Fire timing
 
-These are known from prior development context, but exact files may not all be present in the current public repository. Inspect the current pack before editing. Scoreboard names and function identifiers may be referenced elsewhere; don't rename them casually.
+These names are from development discussions. Some may have changed or may not exist in the current version. Check the actual files before editing anything.
 
-Safe debugging:
-1. Record expected versus actual behavior.
-2. Reproduce in a test world with matching pack versions.
-3. Inspect the relevant function/script and scoreboard values.
+If you're helping debug:
+1. Write down what should happen and what actually happened.
+2. Reproduce it in a test world.
+3. Check the relevant file and scoreboard.
 4. Change one thing at a time.
-5. Test normal use, insufficient MP, repeated use, death/rejoin, and multiplayer when relevant.
-6. Record results and update documentation.
-7. Move fixes to the live world only with owner approval.
+5. Test again, including multiplayer or reconnecting if relevant.
+6. Tell the owner what you changed and what happened.
+
+Don't rename functions or scoreboards casually; other files may depend on them.
 
 ## 6. Homes and teleport requests
 
-Previous discussions referenced `/sethome`, `/home`, and `/tpa`. Their availability and exact syntax are **not verified by the current public repository**. They may belong to another pack/tool or may still be planned.
+Commands like `/sethome`, `/home`, and `/tpa` have come up in earlier discussions, but their current availability and exact syntax **haven't been confirmed**.
 
-Do not invent syntax or promise they work. If they are present, verify how homes persist after reconnect/restart, how teleport requests are accepted/denied/expired, cross-dimension behavior, cooldowns/limits, and abuse prevention. Test in a safe world before documenting the commands as live.
+Don't promise players these commands work until you've tested them. If they're installed, check whether homes survive a reconnect or restart, and whether teleport requests can be accepted, denied, and safely expired.
 
-## 7. AI wizard / agent project
+## 7. The AI wizard project
 
-The owner has discussed connecting an AI wizard brain to Bedrock/Realm through an MCP/mc-agent-style setup. The related local project path previously mentioned was `C:\Users\tycem\mc-mcp-server`. Proposed ideas included AI-selected spell/function actions and combat roles.
+The owner has discussed connecting an AI wizard to Bedrock through an MCP/mc-agent-style project. A local project folder previously mentioned was `C:\Users\tycem\mc-mcp-server`.
 
-This is development context, not proof an AI wizard is running on the live world. Before enabling any agent:
-- Restrict tools and permissions to the minimum required.
-- Test in a separate world.
-- Keep an audit trail of its actions.
-- Require human review for bans, permission changes, inventory clearing, or other destructive actions.
-- Stop the process/revoke access if it behaves unexpectedly.
-- Never put keys, tokens, or private server details in public chat/issues/screenshots.
+That doesn't mean the AI is currently running in the live world.
 
-## 8. Equipment and trinket inventory
+Before helping test an AI:
+- Test it in a separate world first.
+- Give it only the permissions it needs.
+- Keep track of what actions it takes.
+- Don't let it automatically ban players, change permissions, or clear inventories without human review.
+- Stop it and remove its access if it starts doing unexpected things.
+- Never post API keys or private server details in public chat or GitHub.
 
-Project files: [equipment-system](https://github.com/Cod3X9396/Obliskia/tree/main/equipment-system).
+## 8. Equipment and the Arcane Ledger
 
-This is an equipment system for Obliskia magical accessories, separate from the future Cyberpunk 2077 cyberware project.
+The equipment project is meant to let players manage magical accessories in a Minecraft-style menu. It's separate from the future Cyberpunk 2077 cyberware idea.
 
-### Intended design
-- Slots separate from vanilla armor slots.
-- Each slot clearly labeled and visually identifiable.
-- Each item declares its permitted category; incompatible items must be rejected.
-- Players equip/unequip through UI without requiring an NPC/provider.
-- Equipment state and effects should remain consistent after reconnects and in multiplayer.
-- Minecraft-native inventory feel, inspired by the Archaism Talismans layout but implemented independently.
-- A dedicated custom item, the **Arcane Ledger**, opens the interface; not a chat command.
+The plan includes:
+- Equipment slots separate from normal armor slots
+- Clear slot names and item compatibility rules
+- A menu players can open themselves, without needing an NPC
+- Saving equipment and keeping effects correct after reconnects
+- A special item called the **Arcane Ledger** to open the menu
 
-### Current prototype status
-The repository contains:
+### Is it ready to use?
+
+**No — it's still a prototype. Don't install it in the live world yet.**
+
+The repo currently has these files:
 - `equipment-system/README.md`
 - `equipment-system/TECHNICAL_SPIKE.md`
 - `equipment-system/prototype_BP/manifest.json`
 - `equipment-system/prototype_BP/items/arcane_ledger.json`
 - `equipment-system/prototype_BP/scripts/main.js`
 
-The script attempts to open a temporary native Bedrock `ActionFormData` menu when the Arcane Ledger is used. Charm, Ring, Relic, and Focus are placeholder categories, not final approved categories. JavaScript syntax and JSON static checks were performed, but this does not prove the pack runs in Minecraft.
+The script tries to open a basic Minecraft form when the Arcane Ledger is used. The Charm, Ring, Relic, and Focus categories are placeholders, not final decisions. The files passed basic code/JSON checks, but they haven't been proven to work in-game.
 
-**This is not a complete or in-game-verified equipment system.** It does not yet equip real items, enforce compatibility, persist equipment, or provide the intended inventory-like custom UI. The owner explicitly decided not to import it into Minecraft until a working prototype exists.
+It still needs real equip/unequip behavior, item compatibility checks, saved equipment, protection against losing or duplicating items, and the intended custom inventory-like menu.
 
-Admin rules:
-- Do not install it in the live world/Realm.
-- Do not tell players the Arcane Ledger is ready for normal use.
-- Do not distribute placeholder items as if their categories are finalized.
-- Keep development in the repository and test environment until UI, equip/unequip, validation, persistence, and recovery are demonstrated.
-- If testing later shows item loss/duplication, stop testing, preserve evidence, and notify the owner.
+**For admins right now:**
+- Don't add it to the live Realm.
+- Don't tell players it's ready.
+- Don't hand out placeholder items as finished equipment.
+- Leave testing to a separate test world until the owner says it's ready.
 
-See the [equipment README](https://github.com/Cod3X9396/Obliskia/blob/main/equipment-system/README.md) and [technical spike](https://github.com/Cod3X9396/Obliskia/blob/main/equipment-system/TECHNICAL_SPIKE.md).
+More details:
+- [Equipment README](https://github.com/Cod3X9396/Obliskia/blob/main/equipment-system/README.md)
+- [Technical notes](https://github.com/Cod3X9396/Obliskia/blob/main/equipment-system/TECHNICAL_SPIKE.md)
+- [Prototype script](https://github.com/Cod3X9396/Obliskia/blob/main/equipment-system/prototype_BP/scripts/main.js)
 
-## 9. Bugs, exploits, and item-loss reports
+## 9. Bugs, exploits, and lost items
 
-For any bug, record player, time, game/pack version, reproduction steps, scope (one player or many), screenshots/logs, and what changed. Avoid publicly sharing exploit instructions. Reproduce in a test world and do not delete/duplicate items to “fix” it before understanding the cause.
+When someone reports a bug, get:
+- Their Minecraft and add-on version, if known
+- What they were doing, step by step
+- When and where it happened
+- Whether it affects one player or everyone
+- Screenshots or other evidence
+- What items or world changes were involved
 
-If duplication is suspected:
-1. Stop repeated testing and ask the player not to continue exploiting it.
-2. Avoid confiscating unrelated items.
-3. Record before/after evidence and exact steps.
-4. Isolate testing from the live world.
-5. Let the owner decide rollback, item removal, or remediation.
+### If someone finds an item duplication bug
 
-If an item is lost:
-1. Do not promise an immediate replacement.
-2. Determine whether it was dropped, consumed, moved, or lost to a bug.
-3. Record item name/identifier, count, location, and sequence of actions.
-4. Check for a safe recovery/backup.
-5. Escalate suspected add-on bugs.
+1. Ask them to stop repeating it.
+2. Save the details and evidence.
+3. Don't share the exploit publicly.
+4. Reproduce it in a test world, not the live one.
+5. Ask the owner what to do next.
+
+Don't confiscate unrelated items or decide on a rollback yourself.
+
+### If someone loses an item
+
+1. Find out exactly which item and how many were lost.
+2. Ask what happened just before it disappeared.
+3. Check whether it was dropped, used, moved, or lost because of a bug.
+4. Look for a safe way to recover it.
+5. Tell the owner if it looks like an add-on bug.
+
+Don't promise a replacement before the situation has been checked.
 
 ## 10. New-admin checklist
 
-- [ ] Read this guide and ask about unclear rules.
-- [ ] Know which features are live versus planned.
-- [ ] Know the owner and how to contact them.
-- [ ] Understand moderation and private logging.
-- [ ] Know which world is production and which is test.
-- [ ] Confirm whether backups exist and how restoration works; do not assume.
-- [ ] Confirm your exact permission level and responsibilities.
-- [ ] Agree not to abuse powers, leak private information, or share credentials.
-- [ ] Know how to report an incident or malfunctioning AI/add-on.
+- [ ] Read this guide and ask questions about anything unclear.
+- [ ] Know who the owner is and how to contact them.
+- [ ] Know which features actually work in the live world.
+- [ ] Know the difference between the live world and the test world.
+- [ ] Know what you are allowed to do as an admin.
+- [ ] Know how incidents should be recorded.
+- [ ] Find out whether backups exist and how to restore them.
+- [ ] Keep private information and credentials private.
+- [ ] Ask before making risky changes.
 
-## 11. Quick status table
+## 11. Quick status check
 
-| Area | Known details | Status |
-|---|---|---|
-| Project | Bedrock fantasy RPG/add-on | Confirmed direction |
-| Target version | Owner reported Bedrock v26.52 | Verify against live world |
-| MP | 48 max; 1 MP/2 sec regen | Previously discussed; verify live |
-| Fireball | 8 MP; Fire Tome right-click discussed | Previously discussed; verify live |
-| Flamethrower | Sneak; 1 MP per 10 ticks | Prior implementation discussion; verify live |
-| Ring of Fire | 25 MP; 10 sec; radius 5 in design summary | Previously discussed; verify live |
-| Black Hole | “100%” cost mentioned | Meaning/implementation unverified |
-| Dash | 20-block slow field for 1 sec | Design note; verify live |
-| Homes/TPA | `/sethome`, `/home`, `/tpa` mentioned | Availability/syntax unverified |
-| AI wizard | MCP/mc-agent integration discussed | Do not assume live |
-| Equipment | Arcane Ledger + temporary form in repository | Prototype only; not live-ready |
-| Moderation rules | Proposed in this handbook | Owner/admin team should approve |
+| Feature | What we know |
+|---|---|
+| Obliskia RPG | Main project direction |
+| Bedrock v26.52 | Version mentioned by the owner; check the live world |
+| MP and spell costs | Discussed during development; check what's actually enabled |
+| Homes and TPA | Mentioned before; commands aren't confirmed |
+| AI wizard | Planned/discussed; don't assume it's running |
+| Arcane Ledger equipment menu | Prototype only; not ready for the live world |
+| Moderation steps in this guide | Suggestions for the admin team to agree on |
 
-## 12. Change management
+## 12. Making changes
 
-- Keep code and docs in the GitHub repository.
-- Make focused changes and clear commit messages; review diffs.
-- Never commit credentials, API keys, player personal information, or private server details.
-- Keep a changelog for gameplay values and admin commands.
-- Update this guide when a documented value changes.
-- Call a feature “live” only after testing in the intended environment.
+- Make one change at a time and explain what you changed.
+- Check the changes before putting them in the live world.
+- Keep API keys, passwords, player private information, and server details out of GitHub.
+- Update this guide when commands or spell values really change.
+- Only call something “working” after it's been tested in the place it will actually be used.
 
-## 13. Sources and reference links
+## Useful links
 
 ### Obliskia
-- [Repository](https://github.com/Cod3X9396/Obliskia)
+- [Main repository](https://github.com/Cod3X9396/Obliskia)
 - [Equipment README](https://github.com/Cod3X9396/Obliskia/blob/main/equipment-system/README.md)
-- [Equipment technical spike](https://github.com/Cod3X9396/Obliskia/blob/main/equipment-system/TECHNICAL_SPIKE.md)
-- [Arcane Ledger prototype script](https://github.com/Cod3X9396/Obliskia/blob/main/equipment-system/prototype_BP/scripts/main.js)
+- [Equipment technical notes](https://github.com/Cod3X9396/Obliskia/blob/main/equipment-system/TECHNICAL_SPIKE.md)
 
-### Official Minecraft documentation
-- [Bedrock Dedicated Server setup and configuration](https://learn.microsoft.com/en-us/minecraft/creator/documents/bedrockserver/getting-started?view=minecraft-bedrock-stable)
-- [Bedrock `/allowlist` command](https://learn.microsoft.com/en-us/minecraft/creator/commands/commands/allowlist?view=minecraft-bedrock-stable)
-- [Bedrock command list and permission levels](https://learn.microsoft.com/en-us/minecraft/creator/commands/commands?view=minecraft-bedrock-stable)
+### Official Minecraft help
+- [Bedrock Dedicated Server setup](https://learn.microsoft.com/en-us/minecraft/creator/documents/bedrockserver/getting-started?view=minecraft-bedrock-stable)
+- [The `/allowlist` command](https://learn.microsoft.com/en-us/minecraft/creator/commands/commands/allowlist?view=minecraft-bedrock-stable)
+- [Minecraft commands and permissions](https://learn.microsoft.com/en-us/minecraft/creator/commands/commands?view=minecraft-bedrock-stable)
 
-**Rule of thumb:** when uncertain, pause, preserve evidence, and ask the owner. Never guess command syntax, promise an unverified feature, or experiment destructively on the live world.
+**If you're not sure, pause and ask the owner. It's better to check than to accidentally break something in the live world.**
