@@ -1,12 +1,23 @@
-# Obliskia Admin Guide
+# Obliskia Admin Quick Guide
 
-- **Be fair:** Don't punish rumors; save evidence.
-- **Player trouble:** Warn for spam. Report griefing, cheating, stealing, or harassment to the owner.
-- **Stay safe:** Don't abuse powers, share private info, or test risky changes on the live world.
-- **Magic:** Planned values: 48 max MP, Fireball 8 MP, Ring of Fire 25 MP. Check in-game; features may not work yet.
-- **AI wizard:** Test separately; get approval before destructive actions.
-- **Arcane Ledger:** Not ready for the live world.
+Welcome to the team! Here's the stuff you'll actually need.
 
-Unsure? Ask the owner.
+## Handling players
+- **Spam:** Ask them to stop; warn them if it continues.
+- **Griefing, stealing, cheating, or duplication:** Save evidence and tell the owner.
+- **Harassment or threats:** Help protect the affected player and contact the owner quickly.
+- **Lost items or bugs:** Get details before promising a replacement.
 
-[Obliskia GitHub](https://github.com/Cod3X9396/Obliskia)
+Be fair: don't punish people based on rumors. Keep incident details private.
+
+## Keep the world safe
+Don't abuse admin powers, share passwords or private server info, or test risky commands/add-on changes on the live world. If you're unsure, ask first.
+
+## Magic and features
+Planned values include **48 max MP**, **Fireball: 8 MP**, and **Ring of Fire: 25 MP**. These may not be working yet, so test in-game before telling players they're available. The AI wizard should be tested separately, and destructive actions need human approval.
+
+**Arcane Ledger:** The equipment menu is still a prototype. Don't use it on the live world yet.
+
+**Rule of thumb:** If something breaks or you're unsure, save details and contact the owner.
+
+[Obliskia on GitHub](https://github.com/Cod3X9396/Obliskia)
