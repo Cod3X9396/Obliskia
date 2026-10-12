@@ -32,8 +32,16 @@ Avoid APIs that are unavailable on Realms or dedicated-server-only. Verify every
 - A valid item can be equipped, removed, and restored after reconnecting.
 - The behavior is tested in the intended Bedrock version before the architecture is expanded.
 
-## Current unknowns
+## Debug findings
 
-- Exact Minecraft Bedrock version being tested.
-- Whether the first prototype should target local Windows testing only before Realm validation.
-- Proven custom-screen opening method for that game version.
+- The current JavaScript passes a local syntax check, and the manifest/item JSON parse successfully. This does not prove the script modules load in Minecraft.
+- The detail page previously labeled its button **Back** but simply closed the form. The menu loop now makes it return to the category menu.
+- A per-player guard now prevents overlapping forms from repeated item-use events.
+- The item icon was changed from `book_enchanted` to the vanilla `enchanted_book` texture key.
+
+## Current blockers
+
+- The Arcane Ledger event and native form still need an in-game runtime test before their behavior can be called verified.
+- `ActionFormData` is a button-list dialog, not the desired inventory-like custom screen.
+- There is no actual item-equip flow, slot compatibility validation, persistence, or item-loss/duplication protection yet.
+- The custom-screen opening method and slot interaction model remain unproven for the target Bedrock version.
