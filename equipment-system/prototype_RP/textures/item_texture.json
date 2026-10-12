@@ -1,0 +1,21 @@
+{
+  "resource_pack_name": "Obliskia Equipment Prototype Resources",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "obliskia_arcane_ledger": {
+      "textures": "textures/items/arcane_ledger"
+    },
+    "obliskia_test_charm": {
+      "textures": "textures/items/test_charm"
+    },
+    "obliskia_test_ring": {
+      "textures": "textures/items/test_ring"
+    },
+    "obliskia_test_relic": {
+      "textures": "textures/items/test_relic"
+    },
+    "obliskia_test_focus": {
+      "textures": "textures/items/test_focus"
+    }
+  }
+}
