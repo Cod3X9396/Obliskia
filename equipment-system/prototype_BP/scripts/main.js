@@ -2,29 +2,26 @@ import { world, system } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
 
 /*
- * TEMPORARY PROOF OF CONCEPT for Obliskia Equipment.
- * Type !equipment in chat to open this test menu.
+ * Obliskia Equipment — first UI proof of concept.
+ * Use the custom Arcane Ledger item to open this menu.
  *
- * This form is not the final custom inventory UI. It only verifies that:
- * - the pack loads and runs Script API code,
- * - a player can open a menu,
- * - category names are clearly visible.
- *
- * Slot data and item movement are deliberately not implemented yet.
+ * This is a first-stage test using Bedrock's native form styling.
+ * It is not the final inventory layout. Slot categories are examples only.
  */
 
-const OPEN_COMMAND = "!equipment";
+const OPENING_ITEM = "obliskia:arcane_ledger";
+
 const categories = [
-  { title: "Charm Slot", detail: "Accepts Obliskia charms only." },
-  { title: "Ring Slot", detail: "Accepts Obliskia rings only." },
-  { title: "Relic Slot", detail: "Accepts compatible magical relics only." },
-  { title: "Focus Slot", detail: "Accepts compatible spell foci only." }
+  { title: "Charm Slot", detail: "A slot for compatible Obliskia charms." },
+  { title: "Ring Slot", detail: "A slot for compatible Obliskia rings." },
+  { title: "Relic Slot", detail: "A slot for compatible magical relics." },
+  { title: "Focus Slot", detail: "A slot for compatible spell foci." }
 ];
 
 async function showEquipmentPrototype(player) {
   const form = new ActionFormData()
-    .title("Obliskia Equipment — Prototype")
-    .body("TEST MENU — These are example categories, not the final category list.\n\nChoose a slot category to inspect its rule.");
+    .title("Equipment")
+    .body("Obliskia Equipment\n\nChoose a slot category to inspect it.");
 
   for (const category of categories) {
     form.button(category.title);
@@ -35,24 +32,22 @@ async function showEquipmentPrototype(player) {
   try {
     const response = await form.show(player);
     if (response.canceled || response.selection === undefined) return;
+    if (response.selection >= categories.length) return;
 
-    if (response.selection < categories.length) {
-      const category = categories[response.selection];
-      await new ActionFormData()
-        .title(category.title)
-        .body(category.detail + "\n\nCompatibility checks will be implemented in the next prototype.")
-        .button("Close")
-        .show(player)
-        .catch(() => {});
-    }
+    const category = categories[response.selection];
+    await new ActionFormData()
+      .title(category.title)
+      .body(category.detail + "\n\nThese are placeholder categories. We'll finalize Obliskia's categories before implementing real equipment.")
+      .button("Close")
+      .show(player);
   } catch (error) {
-    console.warn(`[Obliskia Equipment] Could not show prototype UI: ${error}`);
+    console.warn(`[Obliskia Equipment] Could not show UI: ${error}`);
   }
 }
 
-world.beforeEvents.chatSend.subscribe((event) => {
-  if (event.message.trim().toLowerCase() !== OPEN_COMMAND) return;
+world.afterEvents.itemUse.subscribe((event) => {
+  if (event.itemStack.typeId !== OPENING_ITEM) return;
+  if (event.source.typeId !== "minecraft:player") return;
 
-  event.cancel = true;
-  system.run(() => showEquipmentPrototype(event.sender));
+  system.run(() => showEquipmentPrototype(event.source));
 });
