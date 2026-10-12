@@ -4,9 +4,7 @@ This folder contains a paired Minecraft Bedrock **Behavior Pack (BP)** and **Res
 
 ## Packs
 - **Behavior Pack:** `prototype_BP/` — custom items, equipment menu, slot validation, and player dynamic-property storage.
-- **Resource Pack:** `prototype_RP/` — companion resource-pack manifest and English pack metadata. The prototype currently uses vanilla item icons; custom artwork has not been added yet.
-
-Import or copy **both** packs into Minecraft Bedrock's development pack folders, then enable both on a disposable test world. The behavior pack declares a dependency on the resource pack so Bedrock can associate the pair.
+- **Resource Pack:** `prototype_RP/` — item texture atlas and custom 16×16 pixel-art sprites for the Arcane Ledger, Test Charm, Test Ring, Test Relic, and Test Focus.
 
 ## What works in the prototype code
 - The Arcane Ledger opens a menu with four separate slots: Charm, Ring, Relic, and Focus.
@@ -20,7 +18,7 @@ Import or copy **both** packs into Minecraft Bedrock's development pack folders,
 The four `obliskia:test_*` items are temporary test items, not final game gear. Give them with commands such as `/give @s obliskia:test_charm`.
 
 ## Important
-The code and JSON pass static checks and mocked behavior tests, but **the Bedrock runtime has not been tested yet**. Before using this in a real world, import both packs into a disposable test world and verify opening, equip/unequip, inventory-full behavior, and reconnect persistence. No item effects are implemented yet, and the prototype has not been made crash-safe for production use.
+The files and JSON have been checked structurally, and the script has passed syntax/mock tests, but **the packs have not been tested inside Bedrock yet**. Before using them in a real world, import both packs into a disposable test world and verify that the custom sprites load, the menu opens, equip/unequip works, inventory-full handling works, and equipment persists after reconnecting. No item effects are implemented yet, and the prototype has not been made crash-safe for production use.
 
 ## Test instructions
 See [PROTOTYPE_TESTING.md](PROTOTYPE_TESTING.md) for the disposable-world checklist.
