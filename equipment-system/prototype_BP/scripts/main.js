@@ -54,4 +54,4 @@ world.afterEvents.itemUse.subscribe((event) => {
   if (event.itemStack.typeId !== TEST_ITEM) return;
   system.run(() => showEquipmentPrototype(event.source));
 });
-\n
+
