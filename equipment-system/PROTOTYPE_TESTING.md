@@ -1,6 +1,6 @@
 # Testing the Equipment Prototype
 
-Do not import this into the main world yet. The code is ready for a **disposable test world** once you want to verify Bedrock runtime behavior.
+Do not import this into the main world yet. The code has passed static checks and a mocked test of equip, unequip, and full-inventory handling. Bedrock runtime behavior still needs confirmation in a **disposable test world**.
 
 1. Import the prototype behavior pack into a new test world with cheats enabled.
 2. Give yourself the Arcane Ledger: `/give @s obliskia:arcane_ledger`.
