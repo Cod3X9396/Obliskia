@@ -8,7 +8,9 @@
       }
     },
     "components": {
-      "minecraft:icon": "gold_nugget",
+      "minecraft:icon": {
+        "texture": "obliskia_test_ring"
+      },
       "minecraft:display_name": {
         "value": "Test Ring"
       },
