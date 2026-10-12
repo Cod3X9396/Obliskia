@@ -8,7 +8,7 @@
       }
     },
     "components": {
-      "minecraft:icon": "book_enchanted",
+      "minecraft:icon": "enchanted_book",
       "minecraft:display_name": {
         "value": "Arcane Ledger"
       },
